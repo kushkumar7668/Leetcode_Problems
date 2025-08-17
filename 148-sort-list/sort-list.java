@@ -1,0 +1,58 @@
+/**
+ * Definition for singly-linked list.
+ * public class ListNode {
+ *     int val;
+ *     ListNode next;
+ *     ListNode() {}
+ *     ListNode(int val) { this.val = val; }
+ *     ListNode(int val, ListNode next) { this.val = val; this.next = next; }
+ * }
+ */
+public class Solution {
+  
+  public ListNode sortList(ListNode head) {
+    if(head == null || head.next == null){
+        return head;
+    }
+    ListNode mid = middleNode(head);    // slight change than before pick 1st middle for even number of nodes
+    ListNode midnxt = mid.next;
+    mid.next = null;
+    ListNode A = sortList(head);
+    ListNode B = sortList(midnxt);
+
+    return mergeTwoLists(A, B);
+  }
+
+  public ListNode middleNode(ListNode head) {   // pick 1st node as mid in case of even number of nodes
+        ListNode slow = head;
+        ListNode fast = head;
+        while (fast.next != null && fast.next.next != null) {
+            slow = slow.next;
+            fast = fast.next.next; 
+            
+        }
+        return slow; 
+    }
+
+    public ListNode mergeTwoLists(ListNode list1, ListNode list2) {
+        ListNode curr = new ListNode();
+        ListNode dummy = curr;
+
+        while (list1 != null && list2 != null) {
+            if (list1.val > list2.val) {
+                curr.next = list2;
+                list2 = list2.next;
+                curr = curr.next;
+            } else {
+                curr.next = list1;
+                list1 = list1.next;
+                curr = curr.next;
+            } 
+        } 
+
+        if(list1 == null) curr.next = list2;
+        else if(list2 == null) curr.next = list1;
+        
+        return dummy.next;
+    }
+}
