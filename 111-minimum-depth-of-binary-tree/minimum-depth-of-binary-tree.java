@@ -13,23 +13,32 @@
  *     }
  * }
  */
+import java.util.*;
+
 class Solution {
     public int minDepth(TreeNode root) {
-        int height = findDepth(root, 1);
-        return height;
-    }
+        if (root == null) return 0;
 
-    public int findDepth(TreeNode root, int depth){
-        if(root==null) return 0;
+        Queue<TreeNode> q = new LinkedList<>();
+        q.add(root);
+        int depth = 1;
 
-        if(root.left == null && root.right== null){
-            return depth;
+        while (!q.isEmpty()) {
+            int size = q.size();
+
+            for (int i = 0; i < size; i++) {
+                TreeNode node = q.poll();
+
+                // if leaf found, return immediately
+                if (node.left == null && node.right == null) {
+                    return depth;
+                }
+
+                if (node.left != null) q.add(node.left);
+                if (node.right != null) q.add(node.right);
+            }
+            depth++;
         }
-
-        int l = findDepth(root.left, depth+1);
-        int r = findDepth(root.right, depth+1);
-        if(root.left == null) return r;
-        else if(root.right == null) return l;
-        return Math.min(l,r);
+        return depth;
     }
 }
