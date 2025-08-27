@@ -22,16 +22,15 @@ class Solution {
     public void invert(TreeNode root){
         if(root == null)return;
 
+    // you actually have to change the reference of left and right sub-tree not the value only.
         if(root.left!=null || root.right!=null){
             TreeNode temp = root.left;
             root.left = root.right;
             root.right = temp;
+        }
         invert(root.left);
         invert(root.right);
 
         return;
-
-
-        }
     }
 }
