@@ -16,13 +16,14 @@
  import java.util.*;
 class Solution {
     public List<String> binaryTreePaths(TreeNode root) {
+        if(root==null) return new ArrayList<>();
         List<String> ll = new ArrayList<>();
         return print(root, "", ll );
 
     }
 
     public List<String> print (TreeNode root,String s, List<String> res){
-        if(root==null) return new ArrayList<>();
+        
         if(s.equals("")) s+=root.val;
         
         if(root.left == null && root.right == null){    // leaf node
@@ -33,7 +34,6 @@ class Solution {
             print(root.left, s+ "->" + root.left.val, res);
         }
         if(root.right!=null) {
-           
             print(root.right,  s + "->" + root.right.val, res);
         }
 
