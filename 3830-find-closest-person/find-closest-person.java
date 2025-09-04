@@ -4,6 +4,7 @@ class Solution {
         int b  = Math.abs(y-z);
 
         if(a==b) return 0;
-        return  a>b?2:1;
+        else if(a<b) return 1;
+        else return 2;
     }
 }
