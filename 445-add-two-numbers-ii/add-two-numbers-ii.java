@@ -13,14 +13,21 @@ class Solution {
         Stack<Integer> st1 = new Stack<>();
         Stack<Integer> st2 = new Stack<>();
         Stack<Integer> st3 = new Stack<>();
-        while(l1 !=null){
-            st1.push(l1.val);
-            l1 = l1.next;
+        while(l1 !=null || l2 != null){
+            if(l1 != null){
+                st1.push(l1.val);
+                l1 = l1.next;
+            }
+            if(l2 != null){
+                st2.push(l2.val);
+                l2 = l2.next;
+            }
+            
         }
-        while(l2 !=null){
-            st2.push(l2.val);
-            l2 = l2.next;
-        }
+        // while(l2 !=null){
+        //     st2.push(l2.val);
+        //     l2 = l2.next;
+        // }
         int carry = 0;
         while(!st1.isEmpty() && !st2.isEmpty()){
             int n = st1.pop() + st2.pop() + carry;
