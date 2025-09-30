@@ -2,20 +2,28 @@ class Solution {
     public List<List<Integer>> shiftGrid(int[][] grid, int k) {
         int m = grid.length;
         int n = grid[0].length;
-        int total = m * n;
-        // if shifting total times, it shifts back to orignal state
-        k = k % (total);
-        List<List<Integer>> result = new ArrayList<>();
-        for(int i = 0; i < m; i++) {
-            List<Integer> list = new ArrayList<>();
-            result.add(list);
-            for (int j = 0; j < n; j++) {   
-                // i * n + j original place index in 1D array
-                // i * n + j - k  is to get value k steps before                 
-                int index = ((i * n + j) - k + total) % total;
-                list.add(grid[index / n][index % n]);
+        int temp = m * n;
+        int a[] = new int[temp];
+        k = k % temp;
+        int q = 0;
+        for (int i = 0; i < m; i++) {
+            for (int j = 0; j < n; j++) {
+                a[q++] = grid[i][j];
             }
         }
-        return result;
+        int[] t = new int[temp];
+        q = 0;
+        for (int i = 0; i < k; i++)
+            t[i] = a[temp - k + i];
+
+        for (int i = k; i < temp; i++)
+            t[i] = a[i - k];
+            
+        for (int i = 0; i < m; i++) {
+            for (int j = 0; j < n; j++) {
+                grid[i][j] = t[q++];
+            }
+        }
+        return (List) Arrays.asList(grid);
     }
 }
