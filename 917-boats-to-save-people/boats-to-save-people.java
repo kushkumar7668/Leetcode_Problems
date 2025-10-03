@@ -14,6 +14,7 @@ class Solution {
                 right--;
             }
             else{
+                // carry the heaviest person so tha tlater you can have profit
                 boatCount++;
                 right--;
             }
