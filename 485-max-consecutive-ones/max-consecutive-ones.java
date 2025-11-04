@@ -6,10 +6,10 @@ class Solution {
             if(nums[i]==1){
                 curr++;
             }
-            else if(nums[i] == 0){
+            else{
                 curr = 0;
             }
-            max = Math.max(max,curr);
+            max = max>curr?max:curr;
         }
         return max;
     }
