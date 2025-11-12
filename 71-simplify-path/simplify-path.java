@@ -12,7 +12,8 @@ class Solution {
                 if (!st.isEmpty()) {
                     st.pop();
                 }
-            } else {
+            }
+            else {
                 st.push(comp);
             }
         }
