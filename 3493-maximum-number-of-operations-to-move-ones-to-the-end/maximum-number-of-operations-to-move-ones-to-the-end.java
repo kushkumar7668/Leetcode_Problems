@@ -1,12 +1,14 @@
 class Solution {
     public int maxOperations(String s) {
-        int ans = 0, n = s.length(), count1 = (s.charAt(0) - '0');
-        for (int i = 1; i < n; i++) {
-            int x = s.charAt(i) - '0';
-            count1 += x;
-            ans += (x == 0 && s.charAt(i-1) - '0' == 1) ? count1 : 0;
-        }
-
-        return ans;
-    }
+		char[] chars = s.toCharArray();
+		int n = chars.length, ans = 0, count = chars[0] == '1' ? 1 : 0;
+		for (int i = 1; i < n; i++) {
+			if (chars[i] == '0' && chars[i - 1] == '1') {
+				ans += count;
+			} else if (chars[i] == '1') {
+				count++;
+			}
+		}
+		return ans;
+	}
 }
