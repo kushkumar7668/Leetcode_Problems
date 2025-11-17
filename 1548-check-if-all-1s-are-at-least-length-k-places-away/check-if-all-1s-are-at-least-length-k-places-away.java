@@ -5,7 +5,6 @@ class Solution {
         for(int i =0; i<nums.length; i++){
             if(nums[i] == 1 && curr == -1){
                 curr = i;
-                // prev = i;
             }
             else if(nums[i] == 1){
                 prev = curr;
