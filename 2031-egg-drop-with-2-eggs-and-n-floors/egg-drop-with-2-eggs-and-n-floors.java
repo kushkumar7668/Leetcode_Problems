@@ -4,7 +4,7 @@ class Solution {
         int d = 1;
         while(n>0){
             n = n-d;
-            ans += 1;
+            ans++;
             d++;
         }
         return ans;
