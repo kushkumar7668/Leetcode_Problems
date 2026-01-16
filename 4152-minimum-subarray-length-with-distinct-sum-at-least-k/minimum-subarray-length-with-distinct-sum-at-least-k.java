@@ -1,28 +1,29 @@
 class Solution {
     public int minLength(int[] nums, int k) {
-        
-        
         int[] freq = new int[100001];
-        
-        long sum = 0;
-        int l = 0, ans = Integer.MAX_VALUE;
-        
-        for (int r = 0; r < nums.length; r++) {
-            if (freq[nums[r]] == 0) {
-                sum += nums[r];
-            }
-            freq[nums[r]]++;
+        int left = 0;
+        int result = Integer.MAX_VALUE;
+        int currSum = 0;
 
-            // shrink window to minimum size
-            while (sum >= k) {
-                ans = Math.min(ans, r - l + 1);
-                freq[nums[l]]--;
-                if (freq[nums[l]] == 0)
-                    sum -= nums[l];
-                l++;
-            }
+        for (int right = 0; right < nums.length; right++) {
+            int rightElem = nums[right];
+            if (freq[rightElem] == 0) {
+                currSum += rightElem;
+            } 
 
+            freq[rightElem]++;
+
+            while (currSum >= k && left <= right) {
+                int leftElem = nums[left];
+                if (freq[leftElem] == 1) {
+                    currSum -= leftElem;
+                }
+                freq[leftElem]--;
+                result = Math.min(result, right - left + 1);
+                left++;
+            }
         }
-        return ans == Integer.MAX_VALUE ? -1 : ans;
+
+        return result == Integer.MAX_VALUE ? -1 : result;
     }
 }
