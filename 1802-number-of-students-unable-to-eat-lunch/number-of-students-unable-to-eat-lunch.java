@@ -15,7 +15,7 @@ class Solution {
             }
 
             else{
-                q.add(x);
+                q.offer(x);
             }
         }
 
