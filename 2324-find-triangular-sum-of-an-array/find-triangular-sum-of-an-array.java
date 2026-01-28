@@ -3,16 +3,14 @@ class Solution {
     public int triangularSum(int[] nums) {
         if(nums.length ==1) return nums[0];
         int n = nums.length;
-        ArrayList<Integer> ll = new ArrayList<>();
-        for(int x : nums) ll.add(x);
+   
         while(n > 1){
-            for(int i =0; i<ll.size()-1; i++){
-                int x = (ll.get(i) + ll.get(i+1)) % 10;
-                ll.set(i, x);
+            for(int i =0; i < n-1; i++){
+               nums[i] = (nums[i] + nums[i+1])%10;
             }
-            ll.remove(n-1);
+            
             n--;
         }
-        return ll.get(0);
+        return nums[0];
     }
 }
