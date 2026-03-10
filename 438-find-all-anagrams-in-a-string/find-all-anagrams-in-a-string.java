@@ -14,7 +14,7 @@ class Solution {
             list.add(0);
 
         int i;
-        for (i = M; i < N; i++) { // going from 3 to 9 in above example
+        for (i = M; i < N; i++) { // going from 3 to 9 in 1st example
             currentCount[s.charAt(i - M) - 'a']--; // blue pointer, decrement frequency
             currentCount[s.charAt(i) - 'a']++; // red pointer, increment frequency
             if (areSame(count, currentCount)) { // now check, both array are same
