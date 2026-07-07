@@ -14,7 +14,7 @@ class Solution {
             else if(ch >= 'A' && ch <= 'Z') {
                 f[ch - 'A'][1]++;
             }
-            i++;
+
             
         }
 
