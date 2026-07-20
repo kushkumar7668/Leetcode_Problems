@@ -1,29 +1,35 @@
 class Solution {
     public List<List<Integer>> shiftGrid(int[][] grid, int k) {
-        int m = grid.length;
-        int n = grid[0].length;
-        int temp = m * n;
-        int a[] = new int[temp];
-        k = k % temp;
-        int q = 0;
-        for (int i = 0; i < m; i++) {
-            for (int j = 0; j < n; j++) {
-                a[q++] = grid[i][j];
+        int row = grid.length, col = grid[0].length;
+        int[] arr = new int[row*col];
+        for(int i = 0; i<row; i++){
+            for(int j = 0; j<col; j++){
+                arr[i*col + j] = grid[i][j];
             }
         }
-        int[] t = new int[temp];
-        q = 0;
-        for (int i = 0; i < k; i++)
-            t[i] = a[temp - k + i];
+        k = k%arr.length;
+        rev(arr, 0, arr.length-1);
+        rev(arr, k, arr.length-1);
+        rev(arr, 0, k-1);
 
-        for (int i = k; i < temp; i++)
-            t[i] = a[i - k];
-            
-        for (int i = 0; i < m; i++) {
-            for (int j = 0; j < n; j++) {
-                grid[i][j] = t[q++];
+        List<List<Integer>> ans = new ArrayList<>();
+        for(int i=0; i<row; i++){
+            List<Integer> ll = new ArrayList<>();
+            for(int j = 0; j<col; j++){
+                ll.add(arr[i*col+j]);
             }
+            ans.add(ll);
         }
-        return (List) Arrays.asList(grid);
+        return ans;
+
+    }
+    public void rev(int[] arr, int s, int e){
+        while(s < e){
+            int temp = arr[s];
+            arr[s] = arr[e];
+            arr[e] = temp;
+            s++;
+            e--;
+        }
     }
 }
