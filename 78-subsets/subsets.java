@@ -1,33 +1,22 @@
 class Solution {
     public List<List<Integer>> subsets(int[] nums) {
         List<List<Integer>> res = new ArrayList<>();
-        List<Integer> ll = new ArrayList<>();
+        List<Integer> subset = new ArrayList<>();
 
-        helper(nums, 0, ll, res);
+        createSubset(nums, 0, res, subset);
         return res;        
     }
 
-    // private void helper(int[] nums, int index, List<Integer> ll, List<List<Integer>> res) {
-    //    res.add(new ArrayList<>(ll));
-
-    //    for(int i = index; i<nums.length; i++){
-    //     ll.add(nums[i]);
-    //     helper(nums, i+1, res, ll);
-    //     ll.remove(ll.size()-1);
-
-    //    }
-    // }    
-
-    private void helper(int[] nums, int index, List<Integer> ll, List<List<Integer>> res){
-        if(index == nums.length){
-            res.add(new ArrayList<>(ll));
+    private void createSubset(int[] nums, int index, List<List<Integer>> res, List<Integer> subset) {
+        if (index == nums.length) {
+            res.add(new ArrayList<>(subset));
             return;
         }
 
-        ll.add(nums[index]);
-        helper(nums, index+1, ll, res);
+        subset.add(nums[index]);
+        createSubset(nums, index + 1, res, subset);
 
-        ll.remove(ll.size() -1);
-        helper(nums, index+1, ll, res);
-    }
+        subset.remove(subset.size() - 1);
+        createSubset(nums, index + 1, res, subset);
+    }    
 }
