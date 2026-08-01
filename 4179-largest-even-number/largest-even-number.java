@@ -4,7 +4,10 @@ class Solution {
         while(i>=0 && s.charAt(i) != '2'){
             i--;
         }
-        String ans = i >=0 ? s.substring(0, i+1) : "";
+        String ans = "";
+        if(i >= 0){
+            ans = s.substring(0, i+1);
+        }
         return ans;
     }
 }
