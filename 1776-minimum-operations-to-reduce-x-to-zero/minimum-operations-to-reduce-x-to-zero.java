@@ -5,9 +5,7 @@ class Solution {
         for(int v : nums)
             sum += v;
         int left = 0, right = 0, ans = -1, curr = 0;
-
-        if(curr == (sum-x)) return n;   // if whole array has to be removed
-
+        if(curr == (sum-x)) return n;
         while(right < n){
             curr += nums[right];
             while(curr > (sum-x) && left < right){
